@@ -1,0 +1,42 @@
+:root {
+  ---white: #fff;
+
+  --background: #F8F8F8;
+
+  --gray-100: #dfe6ed;
+  --gray-200: #4b5c6b;
+
+  --purple-100: #6558f5;
+  --purple-200: #3F31DC;
+
+  --blue-100: #8dd7cf;
+  --blue-200: #97bec3;
+
+  --orange: #F18D21;
+
+  --red-500: #F75A68;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+body, ul, li, h1, p, input {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 1.2rem;
+  font-family: 'Inter', sans-serif;
+}
+
+#app {
+  width: 100%;
+  margin: 0 auto;
+}

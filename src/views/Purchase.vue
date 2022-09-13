@@ -34,7 +34,7 @@
             </div>
           <div class="gap-10">
               <input ref="cidade" v-model="cidade"  class="form__city" type="text" placeholder="Cidade*">
-              <input ref="estado" v-model="estado"  class="form__state" type="text" placeholder="Estado*">
+              <input onkeydown="return /[a-z]/i.test(event.key)" ref="estado" v-model="estado"  maxlength="2" class="form__state" type="text" placeholder="Estado*">
             </div>               
           </form>
         </div>
@@ -120,6 +120,7 @@ export default {
       end: null,
       cidade: null,
       estado: null,
+      states: ['AC','AL','AP','AM','BA','CE','DF','ES','GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO']
     }   
   },
   computed: {
@@ -189,6 +190,7 @@ export default {
       this.$refs["cidade"].classList.remove("error");
       this.$refs["email"].classList.remove("error");
 
+
       if (!this.nome) {
         this.$refs["nome"].classList.add("error");
         this.errors.push("Favor preencher seu NOME!");
@@ -204,7 +206,6 @@ export default {
         this.$refs["cpf"].classList.add("error");
         this.errors.push("CPF inválido!"); 
       }
-       
       if(!this.cel) {
         this.$refs["cel"].classList.add("error");
         this.errors.push("Favor preencher o CELULAR!");
@@ -220,6 +221,9 @@ export default {
       if(!this.estado) {
         this.$refs["estado"].classList.add("error");
         this.errors.push("Favor preencher o ESTADO!");
+      } else if(!this.validState(this.estado)) {
+        this.$refs["estado"].classList.add("error");
+        this.errors.push("Estado inválido!");
       }                         
       if (!this.email) {
         this.$refs["email"].classList.add("error");
@@ -237,6 +241,11 @@ export default {
     validEmail(email) {
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
+    },
+    validState(estado) {
+      const toUpper = estado.toUpperCase();
+      const foundInStates = this.states.some(equal => equal == toUpper);
+      return foundInStates
     }       
   },
   watch: {

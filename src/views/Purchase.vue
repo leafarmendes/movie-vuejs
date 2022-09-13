@@ -150,6 +150,7 @@ export default {
       this.closeAside();
       this.$router.push({name: "home"});
       this.$store.commit("cartCount", this.cart.length);
+      this.$store.state.searchArray = [];
     },
     removeSuccess() {
       this.$moshaToast('Filme removido do carrinho!',

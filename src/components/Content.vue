@@ -6,7 +6,7 @@
           <div v-for="(search, index) in searchArray" :key="search.id" class="card__container">
             <div class="card__img">
               <button class="fav__button" @click="setFavorite(searchArray, search, search.id, index, $event)">
-                <img v-if ="!search.favorite" class="card__heart" :src="setHeartImage">
+                <img v-if ="!search.favorite" class="card__heart" src="./src/assets/heart_white_outline.svg">
                 <Vue3Lottie ref="customControl" :animationData="Heart" :autoPlay="false" :loop="false"/>
               </button>
               <img class="poster" :src="setPosterPath(search.poster_path)" alt="">
@@ -37,7 +37,7 @@
           <div v-for="(film, index) in films" :key="film.id" class="card__container">
             <div class="card__img">
               <button class="fav__button" @click.prevent="setFavorite(films, film, film.id, index, $event)">
-                <img v-if ="!film.favorite" class="card__heart" :src="setHeartImage" alt="">  
+                <img v-if ="!film.favorite" class="card__heart" src="./src/assets/heart_white_outline.svg" alt="">  
                 <Vue3Lottie ref="customControl" :animationData="Heart" :autoPlay="false" :loop="false"/>          
               </button>
               <img class="poster" :src="setPosterPath(film.poster_path)" alt="">

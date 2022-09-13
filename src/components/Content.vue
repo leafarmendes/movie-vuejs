@@ -235,11 +235,11 @@ import 'vue3-lottie/dist/style.css'
         return value.toLocaleString("pt-BR", {style: "currency", currency: "BRL"})
       },
       remove(item, index, arr, id) {
-        const getFavStore = this.$store.state.fav;
         const foundInFilms = this.films.findIndex(x => x.id === id);
-        getFavStore[index] = {...getFavStore[index], favorite: false};
+        const foundInSearch = this.searchArray.findIndex(x => x.id === id);
         item = {...item, favorite: false};
         this.films[foundInFilms] = {...this.films[foundInFilms], favorite: false};
+        this.searchArray[foundInSearch] = {...this.searchArray[foundInSearch], favorite: false};
 
         this.removeSuccess(arr);
 

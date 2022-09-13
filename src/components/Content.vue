@@ -272,7 +272,11 @@ import 'vue3-lottie/dist/style.css'
       setFavorite(arr, item, id, index, event) {
         const found = this.fav.some(equal => equal.id === id);
         const foundInFilms = this.films.findIndex(x => x.id === id);
+        const foundInFav = this.fav.findIndex(x => x.id === id);
         const foundInSearch = this.searchArray.findIndex(x => x.id === id);
+        if(item.favorite) {          
+          this.remove(item, foundInFav, this.fav, id);
+        }
         if(!found) {
           if(item) {
             this.addFavoriteSuccess();
@@ -287,8 +291,10 @@ import 'vue3-lottie/dist/style.css'
             this.$store.commit("pushFav", item);
             this.$store.commit("favCount", this.$store.state.fav.length);
             this.play(index, 1);
+            return
           }
-        }     
+        }
+
       },
       showTooltip(event) {
         const currentTarget = event.target;

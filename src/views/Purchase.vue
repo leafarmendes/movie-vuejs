@@ -91,6 +91,7 @@ import Nav from '../components/Nav.vue';
 import {mask} from 'vue-the-mask';
 import { Vue3Lottie } from 'vue3-lottie'
 import NotFoundCart from '../assets/lotties/notFound.json'
+import { validate  } from 'gerador-validador-cpf'
 
 import 'vue3-lottie/dist/style.css'
 
@@ -170,6 +171,7 @@ export default {
       this.$router.push({name: "home"});
       this.$store.state.cart = [];
       this.$store.state.fav = [];
+      this.$store.state.searchArray = [];
 
       this.$store.state.films.map(item => item.favorite = false);
       this.$store.state.searchArray.map(item => item.favorite = false);
@@ -198,7 +200,11 @@ export default {
       if(!this.cpf) {
         this.$refs["cpf"].classList.add("error");
         this.errors.push("Favor preencher o CPF!");
+      } else if(!validate(this.cpf)) {
+        this.$refs["cpf"].classList.add("error");
+        this.errors.push("CPF inválido!"); 
       }
+       
       if(!this.cel) {
         this.$refs["cel"].classList.add("error");
         this.errors.push("Favor preencher o CELULAR!");
